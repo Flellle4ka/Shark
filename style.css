@@ -12,7 +12,7 @@ body {
     color: #333;
     background: #151028;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; /* убрать, если фон картинкой */
     height: 100vh;
 }
 
@@ -39,7 +39,6 @@ body {
 
 .marquee-text {
     width: max-content;
-    text-wrap: nowrap;
     text-align: center;
     padding: 0 1rem;
     animation: marquee 7s linear infinite;
@@ -83,8 +82,6 @@ body {
     padding: 2.5rem 1.5rem;
     transform: skew(0, 10deg);
     text-decoration: none;
-    max-width: 90vw;
-    margin: 0 auto;
 }
 
 .card > * {
@@ -107,41 +104,9 @@ body {
     text-align: center;
 }
 
-@media (max-width: 600px) {
+/* Медиа-запрос для адаптации на мобильных устройствах */
+@media (max-width: 768px) {
     .grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 0.5rem;
-    }
-
-    .card {
-        padding: 1.5rem 1rem;
-        transform: skew(0, 5deg);
-    }
-}
-
-@media (max-width: 420px) {
-    .card img {
-        width: 5rem;
-    }
-
-    .card-label {
-        font-size: 1rem;
-    }
-
-    .marquee {
-        font-size: 1.2rem;
-        padding: 5px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .marquee {
-        font-size: 1rem;
-        padding: 0.3rem;
-    }
-    
-    .marquee-text {
-        padding: 0 0.5rem;
+        grid-template-columns: 1fr 1fr; /* Устанавливаем 2 столбца на мобильных устройствах */
     }
 }
