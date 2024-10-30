@@ -1,0 +1,177 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Rubik", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    height: 100vh;
+    width: auto;
+    background: radial-gradient(#000000 0%, #191970 100%);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.root{
+
+}
+
+.coins {
+    z-index: -1;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    top: -100vh;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.coins_item {
+    max-height: 12vh;
+    padding: 1vh;
+    animation: animateProgress 3s linear infinite;
+}
+.coins_item1 {
+    max-height: 8vh;
+    padding: 1vh;
+    animation: animateProgress 5s linear infinite;
+}
+
+@keyframes animateProgress {
+    0% {
+        transform: translateY(-100vh) scale(2); /* ÐÐ°Ñ‡Ð°Ð»ÑŒÐ½Ð°Ñ Ñ‚Ð¾Ñ‡ÐºÐ°, Ð½Ð¾Ñ€Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ */
+    }
+    100% {
+        transform: translateY(200vh) scale(0.8); /* ÐŸÐµÑ€ÐµÐ»ÐµÑ‚ Ð² Ð¿Ñ€Ð°Ð²ÑƒÑŽ Ñ‡Ð°ÑÑ‚ÑŒ ÑÐºÑ€Ð°Ð½Ð° */
+    }
+}
+
+
+.container {
+    padding: 15vw;
+    text-align: center;
+
+}
+
+.result {
+    text-align: center;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.coin {
+    height: 300px;
+    width: 300px;
+    margin: 60px auto 20px;
+    position: relative;
+    transform-style: preserve-3d;
+
+}
+
+.coin img {
+    width: 100%;
+}
+
+.heads, .tails {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.tails {
+    transform: rotateX(180deg);
+}
+
+.heads {
+    transform: rotateX(0deg); /* Ð£Ð±ÐµÐ´Ð¸Ñ‚ÐµÑÑŒ, Ñ‡Ñ‚Ð¾ ÑÑ‚Ð¾ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸ÑÐ¼ */
+}
+
+@keyframes spin-heads {
+    from { transform: rotateX(0deg); }
+    to { transform: rotateX(360deg); }
+}
+
+@keyframes spin-tails {
+    from { transform: rotateX(0deg); }
+    to { transform: rotateX(-360deg); }
+}
+
+@keyframes spin-to-heads {
+    from { transform: rotateX(0deg); }
+    to { transform: rotateX(3600deg); } /* 10 Ð¾Ð±Ð¾Ñ€Ð¾Ñ‚Ð¾Ð² */
+}
+
+@keyframes spin-to-tails {
+    from { transform: rotateX(180deg); }
+    to { transform: rotateX(3780deg); } /* 10 Ð¾Ð±Ð¾Ñ€Ð¾Ñ‚Ð¾Ð² Ð¿Ð»ÑŽÑ 180 Ð³Ñ€Ð°Ð´ÑƒÑÐ¾Ð² */
+}
+
+button {
+    width: 100%;
+    padding: 15px 0;
+    margin-top: 20px;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    background-image: linear-gradient(to right, #ff7e00, #ff7e00 80%, #ffffff);
+    background-size: 200% 200%;
+    position: relative; /* Ð”Ð»Ñ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÐ¸ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ð¸ */
+    overflow: hidden; /* ÐžÐ±ÐµÑÐ¿ÐµÑ‡Ð¸Ð²Ð°ÐµÑ‚, Ñ‡Ñ‚Ð¾ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ñ Ð½Ðµ Ð²Ñ‹Ñ…Ð¾Ð´Ð¸Ñ‚ Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‹ ÐºÐ½Ð¾Ð¿ÐºÐ¸ */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+button.animate:before, button.animate:after {
+    content: '';
+    position: absolute;
+    top: -75%;
+    left: -75%;
+    width: 250%;
+    height: 250%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+button.animate:before {
+    display: block;
+    animation: ripple 1s ease-out forwards;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 10%, transparent 10.01%);
+}
+
+button.animate:after {
+    display: block;
+    animation: ripple 1s ease-out forwards;
+    animation-delay: 0.5s;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.5) 10%, transparent 10.01%);
+}
+
+@keyframes ripple {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(4);
+    }
+}
+
+#flip-button:disabled {
+    background-color: #e1e0ee;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>Черепа</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="1.png" alt="Череп 1" id="skull1">
+        <img src="1.png" alt="Череп 2" id="skull2">
+        <img src="1.png" alt="Череп 3" id="skull3">
+        <img src="3.png" alt="Алмаз" id="diamond" class="diamond" style="display: none;">
+    </div>
+    <div class="button-container">
+        <button class="start-button" onclick="openModal()">START</button>
+        <div class="business-name">
+            Brawl Pirates
+        </div>
+    </div>
+    <div id="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">&#10005;</button>
+            <p class="hash-id-text">GAME HASH ID</p>
+            <input type="text" id="hashIdInput" placeholder="Enter hash id" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter hash id'" onkeydown="handleKeyDown(event)">
+            <button class="modal-button" onclick="validateAndStartShuffle()">OK</button>
+        </div>
+    </div>
+    <div id="message"></div>
+    
+    <!-- Подключение внешнего JavaScript-файла -->
+    <script src="script.js"></script>
+</body>
+</html>

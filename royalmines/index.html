@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Royal Mines Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div id="video-background"></div>
+    <div class="game-title">Royal Mines</div>
+    <div class="game-board" id="gameBoard"></div>
+    <div class="play-buttons-container">
+        <button class="reset-button">
+            <img src="pere.png" alt="Pere icon" style="width: 100%; height: 100%;">
+        </button>
+        <button class="play-button">
+            <img src="play.png" alt="Play icon" style="width: 80%; height: 80%;">
+        </button>
+    </div>
+ <div id="notification" class="notification">
+    <div class="notification-content">
+        <p class="notification-text">Game over!</p>
+        <button onclick="closeNotification()">Ok</button>
+    </div>
+</div>
+    <audio id="click-sound" src="click.mp3"></audio><!-- Звуковой эффект для воспроизведения -->
+    <audio id="reset-sound" src="reset.mp3"></audio>
+    <audio id="not-sound" src="notify.mp3"></audio><!-- Звуковой эффект для воспроизведения -->
+    <audio id="cl-sound" src="close.mp3"></audio>
+    <div class="background"></div>
+    <script src="script.js"></script>
+</body>
+</html>

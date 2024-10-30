@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вертикальный выбор числа</title>
+    <link rel="stylesheet" href="../swiper%4011.1.5/swiper-bundle.min.css">
+    <style>
+        @font-face {
+            font-family: 'Intro';
+            src: url('intro.otf') format('opentype');
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: white;
+            font-family: 'Intro', sans-serif;
+        }
+
+        .title {
+            font-size: 90px; /* Увеличен размер шрифта */
+            color: #333;
+            margin-bottom: 50px; /* Увеличен отступ снизу */
+            opacity: 0; /* Начальная прозрачность */
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        @keyframes fadeText {
+            0%, 100% {
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+        }
+
+        .swiper-container {
+            width: 450px; /* Увеличена ширина */
+            height: 500px; /* Увеличена высота */
+            background: #ffffff;
+            border-radius: 50px; /* Увеличен радиус закругления */
+            box-shadow: 0 25px 62.5px rgba(0,0,0,0.5); /* Увеличена тень */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px; /* Увеличен размер шрифта */
+            color: #333;
+            height: 150px; /* Увеличена высота слайда */
+            font-weight: bold;
+            text-shadow: 2.5px 2.5px 5px rgba(0,0,0,0.25); /* Увеличена тень текста */
+            background: linear-gradient(180deg, #f9f9f9 0%, #e9e9e9 100%);
+            border-radius: 25px; /* Увеличен радиус закругления */
+            margin: 5px 0;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.375); /* Увеличена тень */
+            opacity: 0.5;
+        }
+
+        .swiper-slide-active {
+            transform: scale(1.2);
+            background: linear-gradient(180deg, #ffffff 0%, #dcdcdc 100%);
+            opacity: 1.0;
+        }
+
+        button {
+            margin-top: 50px; /* Увеличен отступ сверху */
+            padding: 25px 50px; /* Увеличены отступы */
+            font-size: 45px; /* Увеличен размер шрифта */
+            background-color: #ffa500;
+            color: white;
+            border: none;
+            border-radius: 12.5px; /* Увеличен радиус закругления */
+            cursor: pointer;
+        }
+
+        .indicator {
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+
+        .indicator.left {
+            left: 25px; /* Увеличен отступ слева */
+            border-width: 25px 25px 25px 0;
+            border-color: transparent #ff9800 transparent transparent;
+        }
+
+        .indicator.right {
+            right: 25px; /* Увеличен отступ справа */
+            border-width: 25px 0 25px 25px;
+            border-color: transparent transparent transparent #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">MINES</div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">1</div>
+            <div class="swiper-slide">3</div>
+            <div class="swiper-slide">5</div>
+            <div class="swiper-slide">7</div>
+        </div>
+        <div class="indicator left"></div>
+        <div class="indicator right"></div>
+    </div>
+    <button onclick="sendNumber()">OK</button>
+    <audio id="scroll-sound" src="1.mp3"></audio>
+    <audio id="ok-sound" src="ok.mp3"></audio>
+
+    <script src="../swiper%4011.1.5/swiper-bundle.min.js"></script>
+    <script>
+        let swiperInitialized = false;
+
+        const swiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            slidesPerView: 3,
+            centeredSlides: true,
+            mousewheel: {
+                forceToAxis: true,
+                releaseOnEdges: true,
+                sensitivity: 50, // Увеличение чувствительности
+                eventsTarget: 'container'
+            },
+            loop: true,
+            slideToClickedSlide: true,
+            speed: 800,
+            on: {
+                init: function () {
+                    swiperInitialized = true;
+                },
+                slideChange: function () {
+                    if (swiperInitialized) {
+                        document.getElementById('scroll-sound').play();
+                    }
+                }
+            }
+        });
+
+        function sendNumber() {
+            document.getElementById('ok-sound').play();
+            const selectedNumber = swiper.slides[swiper.activeIndex].textContent.trim();
+            // Проверяем, находимся ли мы в iframe и есть ли доступ к родительскому окну
+            if (window.parent && window !== window.parent) {
+                window.parent.postMessage(selectedNumber, '*'); // Отправляем число в родительское окно
+            }
+        }
+
+        function getSelectedNumber() {
+            return swiper.slides[swiper.activeIndex].getAttribute('data-number');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('.title');
+            const texts = ["MINES", "WAKA", "SOFTWARE"];
+            let index = 0;
+
+            function changeText() {
+                title.style.opacity = 0; // Сначала скрываем текст
+                setTimeout(() => {
+                    title.textContent = texts[index];
+                    title.style.opacity = 1; // Постепенно делаем текст видимым
+                    index = (index + 1) % texts.length;
+                }, 1500); // Задержка перед сменой текста, совпадающая с продолжительностью исчезновения
+            }
+
+            changeText(); // Начальный вызов функции
+            setInterval(changeText, 3000); // Периодическая смена текста
+        });
+    </script>
+</body>
+</html>

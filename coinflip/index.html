@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+    <title>Flip A Coin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style type="text/css" id="operaUserStyle"></style>
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+<div class="coins">
+    <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 0.0s;">
+    <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 1.5s;">
+    <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 3.6s;">
+    <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 5.2s;">
+    <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 3.1s;">
+    <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 4.6s;">
+    <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 0.0s;">
+    <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 2.5s;">
+    <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 1.3s;">
+    <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 3.9s;">
+    <!-- <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 3.1s;">
+    <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 0.0s;">
+    <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 2.1s;">
+    <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 4.3s;">
+    <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 5.2s;"> -->
+</div>
+<div class="coins">
+    <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 0.0s;">
+    <img class="coins_item1" src="assets/dollar.png" alt="Решка" style="animation-delay: 1.5s;">
+    <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 3.6s;">
+    <img class="coins_item1" src="assets/dollar.png" alt="Решка" style="animation-delay: 5.2s;">
+    <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 3.1s;">
+    <img class="coins_item1" src="assets/dollar.png" alt="Решка" style="animation-delay: 4.6s;">
+    <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 0.0s;">
+    <img class="coins_item1" src="assets/dollar.png" alt="Решка" style="animation-delay: 2.5s;">
+    <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 1.3s;">
+    <img class="coins_item1" src="assets/dollar.png" alt="Решка" style="animation-delay: 3.9s;">
+    <!-- <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 3.1s;">
+    <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 0.0s;">
+    <img class="coins_item1" src="assets/dollar.png" alt="Решка" style="animation-delay: 2.1s;">
+    <img class="coins_item1" src="assets/euro.png" alt="Орел" style="animation-delay: 4.3s;">
+    <img class="coins_item1" src="assets/dollar.png" alt="Решка" style="animation-delay: 5.2s;">-->
+</div>
+<div id="root" class="root">
+    <div class="container">
+        <div class="result" id="result"></div>
+        <div class="coin">
+            <!-- Обеспечьте наличие элементов heads и tails -->
+            <div class="heads"><img src="assets/euro.png" alt="Орел"></div>
+            <div class="tails"><img src="assets/dollar.png" alt="Решка"></div>
+        </div>
+        <button>SPIN</button>
+    </div>
+</div>
+</body>
+<script>
+    const coinElement = document.querySelector('.coin');
+    const buttonElement = document.querySelector('button');
+    const resultElement = document.getElementById('result');
+
+    function startCoinAnimation(isHeads) {
+        // Сброс текущей анимации для гарантии повторного воспроизведения
+        coinElement.style.animation = 'none';
+
+        setTimeout(() => {
+            const animationName = isHeads ? 'spin-to-heads' : 'spin-to-tails';
+            coinElement.style.animation = `3s ease 0s 1 normal forwards ${animationName}`;
+
+            // Отключаем кнопку на время анимации
+            buttonElement.disabled = true;
+
+            // Обработчик окончания анимации
+            coinElement.addEventListener('animationend', () => {
+                // Отображение результата после окончания анимации
+                resultElement.textContent = isHeads ? 'ОРЁЛ | HEAD' : 'РЕШКА | TAIL';
+                // Включение кнопки после завершения анимации
+                buttonElement.disabled = false;
+            }, {once: true});
+        }, 10);
+    }
+
+    buttonElement.addEventListener('click', () => {
+        const isHeads = Math.random() < 0.5;
+        startCoinAnimation(isHeads);
+    });
+</script>
+</html>

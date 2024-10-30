@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Интерактивная страница</title>
+</head>
+<body>
+    <div id="video-background"></div>
+    <div class="main-container">
+        <div class="animated-text" id="animated-text"></div>
+        <div class="nogocio" id="nogocio">
+            <img src="static/tg.svg" alt="Telegram Icon">
+            SHARK
+        </div>
+        <div class="container">
+            <div class="grid" id="grid">
+                <!-- Квадраты будут добавлены здесь с помощью JavaScript -->
+            </div>
+        </div>
+        <div id="counter-container">
+            <span id="count" class="count-display"></span>
+        </div>
+        <button onclick="showModal()">Получить сигнал</button>
+    </div>
+    <audio id="sound-effect" src="static/star.mp3"></audio>
+    <audio id="ok-sound" src="static/ok.mp3"></audio><!-- Звуковой эффект для воспроизведения -->
+    <audio id="close-sound" src="static/close.mp3"></audio>
+    <!-- Модальное окно для ввода количества ловушек -->
+    <div id="modal">
+    <div class="close-button" onclick="closeModals()">&times;</div>
+    <iframe src="static/slider.html" frameborder="0" style="width:100%; height:100%"></iframe>
+</div>
+    <script src="iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
