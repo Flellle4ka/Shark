@@ -11,10 +11,8 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #333;
     background: #151028;
-    /* background: linear-gradient(0deg, rgb(21, 16, 40) 0%, rgb(56, 24, 148) 100%); */
-    /* background: url("Images/bg.jpg") center/cover; */
     background-size: cover;
-    background-attachment: fixed; /*убрать,если фон картинкой */
+    background-attachment: fixed;
     height: 100vh;
 }
 
@@ -33,7 +31,6 @@ body {
     padding: 10px 0;
     text-align: center;
     margin: 10px 0;
-    /* border-radius: 8px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
@@ -58,7 +55,7 @@ body {
 }
 
 .card-list {
-    margin-top: 2rem; /* Устанавливаем отступ сверху */
+    margin-top: 2rem;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -79,13 +76,15 @@ body {
     gap: 1rem;
     align-items: center;
     background: #20202880;
-    -webkit-backdrop-filter: blur(1rem); /* Основной стиль */
-    backdrop-filter: blur(1rem); /* Поддержка для Safari */
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
     border: 1px solid #261c4a;
     border-radius: 1.5rem;
     padding: 2.5rem 1.5rem;
     transform: skew(0, 10deg);
     text-decoration: none;
+    max-width: 90vw;
+    margin: 0 auto;
 }
 
 .card > * {
@@ -108,8 +107,41 @@ body {
     text-align: center;
 }
 
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .card {
+        padding: 1.5rem 1rem;
+        transform: skew(0, 5deg);
+    }
+}
+
 @media (max-width: 420px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+    .card img {
+        width: 5rem;
+    }
+
+    .card-label {
+        font-size: 1rem;
+    }
+
+    .marquee {
+        font-size: 1.2rem;
+        padding: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .marquee {
+        font-size: 1rem;
+        padding: 0.3rem;
+    }
+    
+    .marquee-text {
+        padding: 0 0.5rem;
+    }
 }
