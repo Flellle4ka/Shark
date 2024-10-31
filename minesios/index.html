@@ -7,6 +7,10 @@
     <title>Интерактивная страница</title>
 </head>
 <body>
+    <script>
+        Telegram.WebApp.BackButton.show() 
+        Telegram.WebApp.BackButton.onClick(() => history.back()) 
+    </script>
     <div id="video-background"></div>
     <div class="main-container">
         <div class="animated-text" id="animated-text"></div>

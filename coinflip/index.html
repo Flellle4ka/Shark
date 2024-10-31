@@ -13,7 +13,12 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
-<body><noscript>You need to enable JavaScript to run this app.</noscript>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+        Telegram.WebApp.BackButton.show() 
+        Telegram.WebApp.BackButton.onClick(() => history.back()) 
+    </script>
 <div class="coins">
     <img class="coins_item" src="assets/euro.png" alt="Орел" style="animation-delay: 0.0s;">
     <img class="coins_item" src="assets/dollar.png" alt="Решка" style="animation-delay: 1.5s;">
