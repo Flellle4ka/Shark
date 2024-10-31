@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aviator</title>
     <link rel="stylesheet" href="index.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body class="page">
-
+    <script>
+        Telegram.WebApp.BackButton.show() 
+        Telegram.WebApp.BackButton.onClick(() => history.back()) 
+    </script>
     <div class="loader">
         <div class="bar"></div>
     </div>

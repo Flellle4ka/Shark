@@ -11,8 +11,10 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #333;
     background: #151028;
+    /* background: linear-gradient(0deg, rgb(21, 16, 40) 0%, rgb(56, 24, 148) 100%); */
+    /* background: url("Images/bg.jpg") center/cover; */
     background-size: cover;
-    background-attachment: fixed; /* убрать, если фон картинкой */
+    background-attachment: fixed; /*убрать,если фон картинкой */
     height: 100vh;
 }
 
@@ -31,6 +33,7 @@ body {
     padding: 10px 0;
     text-align: center;
     margin: 10px 0;
+    /* border-radius: 8px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
@@ -39,6 +42,7 @@ body {
 
 .marquee-text {
     width: max-content;
+    text-wrap: nowrap;
     text-align: center;
     padding: 0 1rem;
     animation: marquee 7s linear infinite;
@@ -54,7 +58,7 @@ body {
 }
 
 .card-list {
-    margin-top: 2rem;
+    margin-top: 2rem; /* Устанавливаем отступ сверху */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -75,8 +79,8 @@ body {
     gap: 1rem;
     align-items: center;
     background: #20202880;
-    -webkit-backdrop-filter: blur(1rem);
-    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem); /* Основной стиль */
+    backdrop-filter: blur(1rem); /* Поддержка для Safari */
     border: 1px solid #261c4a;
     border-radius: 1.5rem;
     padding: 2.5rem 1.5rem;
@@ -104,9 +108,3 @@ body {
     text-align: center;
 }
 
-/* Медиа-запрос для адаптации на мобильных устройствах */
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr 1fr; /* Устанавливаем 2 столбца на мобильных устройствах */
-    }
-}
